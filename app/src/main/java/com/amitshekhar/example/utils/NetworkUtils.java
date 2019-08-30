@@ -27,7 +27,7 @@ import android.net.NetworkInfo;
 public final class NetworkUtils {
 
     private NetworkUtils() {
-        // This utility class is not publicly instantiable
+
     }
 
     public static boolean isNetworkConnected(Context context) {
