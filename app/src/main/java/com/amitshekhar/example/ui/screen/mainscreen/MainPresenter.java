@@ -20,6 +20,8 @@ import com.amitshekhar.example.data.listeners.DataListener;
 import com.amitshekhar.example.data.ServiceRequest;
 import com.amitshekhar.example.ui.base.BasePresenter;
 
+import org.json.JSONObject;
+
 import javax.inject.Inject;
 
 /**
@@ -30,6 +32,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
 
 
     ServiceRequest serviceRequest;
+
 
     @Inject
     public MainPresenter(ServiceRequest serviceRequest) {
@@ -43,9 +46,9 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
     }
 
     @Override
-    public void getVolleyRequest() {
+    public void getVolleyRequest(JSONObject jsonObject, int event) {
         getMvpView().showLoading();
-        serviceRequest.getApiRequest(getContext(), new DataListener() {
+        serviceRequest.getApiRequest(getContext(), jsonObject, event, new DataListener() {
             @Override
             public void onResponse(String data) {
                 getMvpView().hideLoading();
