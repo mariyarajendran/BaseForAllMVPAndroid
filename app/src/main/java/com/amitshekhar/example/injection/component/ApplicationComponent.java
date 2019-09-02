@@ -20,7 +20,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.amitshekhar.example.MyApplication;
-import com.amitshekhar.example.data.DataManager;
+import com.amitshekhar.example.data.ServiceRequest;
 import com.amitshekhar.example.injection.annotation.ApplicationContext;
 import com.amitshekhar.example.injection.module.ApplicationModule;
 
@@ -41,6 +41,9 @@ public interface ApplicationComponent {
     Context context();
 
     Application application();
-    DataManager dataManager();
+
+    ServiceRequest serviceRequest();
+
+    // DataManager dataManager();
 
 }

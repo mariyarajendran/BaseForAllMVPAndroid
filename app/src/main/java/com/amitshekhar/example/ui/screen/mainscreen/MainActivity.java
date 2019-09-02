@@ -1,31 +1,15 @@
-/*
- *    Copyright (C) 2018 MINDORKS NEXTGEN PRIVATE LIMITED
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
-package com.amitshekhar.example.ui.main;
+package com.amitshekhar.example.ui.screen.mainscreen;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amitshekhar.example.R;
 import com.amitshekhar.example.network.NetworkMvpView;
 import com.amitshekhar.example.network.NetworkPresenter;
 import com.amitshekhar.example.ui.base.BaseActivity;
+import com.amitshekhar.example.utils.CommonUtils;
 
 import javax.inject.Inject;
 
@@ -43,6 +27,8 @@ public class MainActivity extends BaseActivity implements MainMvpView, NetworkMv
     @BindView(R.id.textViewData)
     TextView textViewData;
 
+    CommonUtils commonUtils;
+
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
@@ -51,12 +37,19 @@ public class MainActivity extends BaseActivity implements MainMvpView, NetworkMv
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initMain();
+    }
+
+
+    void initMain() {
         activityComponent().inject(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mMainPresenter.attachView(this);
-        mNetworkPresenter.attachView(this);
+        mMainPresenter.attachView(getApplicationContext(), this);
+        mNetworkPresenter.attachView(getApplicationContext(), this);
+        commonUtils = new CommonUtils(getApplicationContext());
     }
+
 
     @Override
     protected void onDestroy() {
@@ -88,9 +81,9 @@ public class MainActivity extends BaseActivity implements MainMvpView, NetworkMv
 
     public void handleNetworkStatus(boolean status) {
         if (status) {
-            mMainPresenter.getData();
+            mMainPresenter.getVolleyRequest();
         } else {
-            Toast.makeText(getApplicationContext(), "Network Not found", Toast.LENGTH_SHORT).show();
+            commonUtils.showToastLong(getString(R.string.no_network));
         }
     }
 }

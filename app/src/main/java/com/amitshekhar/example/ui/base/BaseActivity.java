@@ -28,9 +28,6 @@ import com.amitshekhar.example.injection.component.DaggerActivityComponent;
 import com.amitshekhar.example.injection.module.ActivityModule;
 import com.amitshekhar.example.utils.DialogUtils;
 
-/**
- * Created by amitshekhar on 13/01/17.
- */
 
 public abstract class BaseActivity extends AppCompatActivity implements MvpView {
 

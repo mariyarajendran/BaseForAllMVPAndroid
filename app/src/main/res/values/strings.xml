@@ -17,4 +17,5 @@
 <resources>
     <string name="app_name">Android-MVP-Sample-Application</string>
     <string name="load_data">Load Data</string>
+    <string name="no_network">Network Not Found</string>
 </resources>

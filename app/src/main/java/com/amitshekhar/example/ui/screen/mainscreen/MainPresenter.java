@@ -14,10 +14,10 @@
  *    limitations under the License.
  */
 
-package com.amitshekhar.example.ui.main;
+package com.amitshekhar.example.ui.screen.mainscreen;
 
 import com.amitshekhar.example.data.listeners.DataListener;
-import com.amitshekhar.example.data.DataManager;
+import com.amitshekhar.example.data.ServiceRequest;
 import com.amitshekhar.example.ui.base.BasePresenter;
 
 import javax.inject.Inject;
@@ -28,19 +28,24 @@ import javax.inject.Inject;
 
 public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> implements MainMvpPresenter<V> {
 
-    private final DataManager mDataManager;
+
+    ServiceRequest serviceRequest;
 
     @Inject
-    public MainPresenter(DataManager dataManager) {
-        this.mDataManager = dataManager;
+    public MainPresenter(ServiceRequest serviceRequest) {
+        this.serviceRequest = serviceRequest;
     }
+
 
     @Override
     public void getData() {
 
-        getMvpView().showLoading();
+    }
 
-        mDataManager.getData(new DataListener() {
+    @Override
+    public void getVolleyRequest() {
+        getMvpView().showLoading();
+        serviceRequest.getApiRequest(getContext(), new DataListener() {
             @Override
             public void onResponse(String data) {
                 getMvpView().hideLoading();
@@ -53,5 +58,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
                 getMvpView().showData(error);
             }
         });
+
     }
 }

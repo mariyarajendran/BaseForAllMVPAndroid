@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.amitshekhar.example.ui.base.BaseActivity;
+
 import javax.inject.Inject;
 
 public class NewtworkManager {

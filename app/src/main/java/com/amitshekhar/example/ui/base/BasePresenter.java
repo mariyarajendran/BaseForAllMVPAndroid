@@ -16,6 +16,8 @@
 
 package com.amitshekhar.example.ui.base;
 
+import android.content.Context;
+
 /**
  * Created by amitshekhar on 13/01/17.
  */
@@ -23,10 +25,12 @@ package com.amitshekhar.example.ui.base;
 public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     private V mMvpView;
+    Context context;
 
     @Override
-    public void attachView(V mvpView) {
+    public void attachView(Context context, V mvpView) {
         mMvpView = mvpView;
+        this.context = context;
     }
 
     @Override
@@ -40,6 +44,10 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     public V getMvpView() {
         return mMvpView;
+    }
+
+    public Context getContext() {
+        return context;
     }
 
     public void checkViewAttached() {

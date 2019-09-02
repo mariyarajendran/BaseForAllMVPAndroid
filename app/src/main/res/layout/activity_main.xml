@@ -25,7 +25,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.amitshekhar.example.ui.main.MainActivity">
+    tools:context="com.amitshekhar.example.ui.screen.mainscreen.MainActivity">
 
     <Button
         android:id="@+id/btnLoadData"

@@ -18,7 +18,7 @@ package com.amitshekhar.example.injection.component;
 
 import com.amitshekhar.example.injection.annotation.PerActivity;
 import com.amitshekhar.example.injection.module.ActivityModule;
-import com.amitshekhar.example.ui.main.MainActivity;
+import com.amitshekhar.example.ui.screen.mainscreen.MainActivity;
 
 import dagger.Component;
 

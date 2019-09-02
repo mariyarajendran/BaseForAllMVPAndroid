@@ -16,13 +16,15 @@
 
 package com.amitshekhar.example.ui.base;
 
+import android.content.Context;
+
 /**
  * Created by amitshekhar on 13/01/17.
  */
 
 public interface MvpPresenter<V extends MvpView> {
 
-    void attachView(V mvpView);
+    void attachView(Context context, V mvpView);
 
     void detachView();
 
