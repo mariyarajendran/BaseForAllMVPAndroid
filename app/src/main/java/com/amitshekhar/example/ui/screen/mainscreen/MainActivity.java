@@ -11,6 +11,8 @@ import com.amitshekhar.example.network.NetworkPresenter;
 import com.amitshekhar.example.ui.base.BaseActivity;
 import com.amitshekhar.example.utils.CommonUtils;
 
+import org.json.JSONException;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -28,6 +30,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NetworkMv
     TextView textViewData;
 
     CommonUtils commonUtils;
+    ModelMainActivity modelMainActivity;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -48,6 +51,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, NetworkMv
         mMainPresenter.attachView(getApplicationContext(), this);
         mNetworkPresenter.attachView(getApplicationContext(), this);
         commonUtils = new CommonUtils(getApplicationContext());
+        modelMainActivity = new ModelMainActivity();
     }
 
 
@@ -81,7 +85,8 @@ public class MainActivity extends BaseActivity implements MainMvpView, NetworkMv
 
     public void handleNetworkStatus(boolean status) {
         if (status) {
-            mMainPresenter.getVolleyRequest();
+            modelMainActivity.parseLoginJsonData();
+            mMainPresenter.getVolleyRequest(modelMainActivity.jsonObjectLoginData, 0);
         } else {
             commonUtils.showToastLong(getString(R.string.no_network));
         }
